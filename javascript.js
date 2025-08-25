@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice(){
   let computerChoice = Math.random();
   if (computerChoice<1/3){
@@ -18,4 +21,29 @@ function getHumanChoice(){
   return humanChoice;
 }
 
-console.log(getHumanChoice())
+function playRound(humanChoice, computerChoice){
+  humanChoice = humanChoice.toLowerCase()
+
+  if ((humanChoice === "rock" && computerChoice === "scissors") || 
+  (humanChoice === "scissors" && computerChoice === "paper") || 
+  (humanChoice === "paper" && computerChoice === "rock")) {
+    console.log(`You won! ${humanChoice} beats ${computerChoice}.`)
+    humanScore++;
+  }
+
+  else if (humanChoice === computerChoice) {
+    console.log (`You tied! Both you and the computer chose ${humanChoice}`);
+  }
+
+  else {
+    console.log (`You lost! ${computerChoice} beats ${humanChoice}`)
+    computerScore++;
+  }
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+console.log(playRound(humanSelection, computerSelection))
+
+console.log(`Score - You: ${humanScore}; Computer: ${computerScore}`)
