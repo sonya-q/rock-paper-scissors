@@ -14,6 +14,8 @@ function getComputerChoice(){
 //   let humanChoice = prompt("Enter your choice: Rock, Paper, or Scissors?");
 //   return humanChoice;
 // }
+const runningScore = document.querySelector("#runningScore");
+
 
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
@@ -46,7 +48,7 @@ let computerScore = 0;
 function playRound(humanChoice, computerChoice){
 
   if (humanChoice === computerChoice){
-    console.log(`It's a tie! You both chose ${humanChoice}!`);
+    runningScore.innerHTML += `<p>It's a tie! You both chose ${humanChoice}!</p>`
     return "tie";
   }
 
@@ -56,12 +58,12 @@ function playRound(humanChoice, computerChoice){
     (humanChoice === "paper" && computerChoice === "rock")
   
   if (humanWins) {
-    console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+    runningScore.innerHTML += `<p>You win! ${humanChoice} beats ${computerChoice}!</p>`
     humanScore++;
     return result = "human";
   }
   else {
-    console.log(`You lose... ${computerChoice} beats ${humanChoice}!`);
+    runningScore.innerHTML += `<p>You lose... ${computerChoice} beats ${humanChoice}!</p>`
     computerScore++;
     return result = "computer";
   }
