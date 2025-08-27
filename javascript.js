@@ -18,6 +18,8 @@ const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 
+const results = document.querySelector('#results');
+
 rock.addEventListener("click", () => {
   const humanChoice = 'rock';
   playRound(humanChoice, getComputerChoice())
@@ -42,6 +44,7 @@ function playRound(humanChoice, computerChoice){
   if (humanChoice === computerChoice){
     roundResults.innerHTML += `<p>It's a tie! You both chose ${humanChoice}!</p>`
     updateRoundResults();
+    checkWinner();
     return "tie";
   }
 
@@ -54,14 +57,17 @@ function playRound(humanChoice, computerChoice){
     roundResults.innerHTML += `<p>You win! ${humanChoice} beats ${computerChoice}!</p>`
     humanScore++;
     updateRoundResults();
+    checkWinner();
     return result = "human";
   } 
   else {
     roundResults.innerHTML += `<p>You lose... ${computerChoice} beats ${humanChoice}!</p>`
     computerScore++;
     updateRoundResults();
+    checkWinner();
     return result = "computer";
   }
+
 }
   
 
@@ -69,3 +75,20 @@ function updateRoundResults(){
   runningScore.textContent = `Running Score - You: ${humanScore}; Computer: ${computerScore}`;
 }
 
+
+function checkWinner(){
+  if (humanScore === 5 || computerScore === 5){
+    rock.disabled = true;
+    paper.disabled = true;
+    scissors.disabled = true;
+
+    if (humanScore > computerScore){
+      results.textContent = `Game over! You won! You scored 5 points, and the computer scored ${computerScore}`;
+    }
+    else {
+      results.textContent = `Game over! You lost... The computer scored 5 points, and you scored ${humanScore}`;
+    }
+
+    return true;
+}
+}
